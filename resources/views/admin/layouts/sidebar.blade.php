@@ -16,6 +16,12 @@
                     <span>Categories</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.products.index') }}">
+                    <i class="bi bi-shop"></i>
+                    <span>Products</span>
+                </a>
+            </li>
 
 
         </ul>

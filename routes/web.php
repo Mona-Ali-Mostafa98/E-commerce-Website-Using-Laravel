@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,11 @@ Route::get('/admin/categories/{category}' , [CategoryController::class , 'show']
 Route::get('/admin/categories/{category}/edit' , [CategoryController::class , 'edit'])->name('admin.categories.edit');
 Route::put('/admin/categories/{category}' , [CategoryController::class , 'update'])->name('admin.categories.update');
 Route::delete('/admin/categories/{category}' , [CategoryController::class , 'destroy'])->name('admin.categories.destroy');
+
+// Route::resource('/admin/products' , ProductController::class , [
+//       'names' => 'admin.products'
+//     ]);
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('products', ProductController::class);
+});

@@ -28,11 +28,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fs-4 mb-3">All Categories</h5>
-                            @if (session()->has('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
+
+                            @include('admin.alerts')
+
                             <!-- Table with hoverable rows -->
                             <table class="table table-hover table-striped table-bordered border-dark" style="width: 100%">
                                 <thead>
