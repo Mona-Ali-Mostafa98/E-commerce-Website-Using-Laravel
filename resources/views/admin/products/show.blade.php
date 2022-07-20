@@ -32,8 +32,11 @@
 
                                 <div class="row mb-2">
                                     <div class="col-lg-3 col-md-4 label text-primary fw-bold">Product Image</div>
-                                    <img class="col-lg-9 col-md-8" id="image" src="{{ $product->image }}"
-                                        style="height:80px; width:100px;">
+                                    <div class="col-lg-9 col-md-8">
+                                        <img id="image" src="{{ asset('images/' . $product->image) }}" alt=""
+                                            height="60" width="60">
+                                    </div>
+
                                 </div>
 
                                 <div class="row mb-2">

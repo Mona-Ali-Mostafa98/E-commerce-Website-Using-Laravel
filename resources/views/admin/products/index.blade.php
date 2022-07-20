@@ -49,8 +49,8 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             {{-- <td>{{ $product->id }}</td> --}}
-                                            <td><img src="{{ $product->image }}" alt="" height="60"
-                                                    width="60"></td>
+                                            <td><img src="{{ asset('images/' . $product->image) }}" alt=""
+                                                    height="60" width="60"></td>
                                             <td class="text-primary fw-bold">{{ $product->name }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->quantity }}</td>

@@ -69,12 +69,12 @@
 <div class="row mb-4">
     <label class="col-sm-2 col-form-label">Image</label>
     <div class="col-sm-10">
-        <input name="image" type="file" id="image" value="{{ old('image', $product->image) }}"
+        <input name="image" type="file" id="image"
             class="form-control mb-3 @error('image') is-invalid @enderror">
         @error('image')
             <p class="invalid-feedback">{{ $message }}</p>
         @enderror
-        <img id="image" src="{{ old('image', $product->image) }}" style="height: 80px; width: 100px;"
+        <img id="image" src="{{ asset('images/' . $product->image) }}" style="height: 80px; width: 100px;"
             alt="no image uploaded">
     </div>
 </div>
