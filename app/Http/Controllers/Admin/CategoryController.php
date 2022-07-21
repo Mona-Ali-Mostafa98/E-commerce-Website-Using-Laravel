@@ -54,13 +54,19 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::all();
+        // $categories = Category::all();
+        //add query to prevent current category and his children show in field of parent_id edit form
+        $categories = Category::where('id' , '!=' , $id)
+            ->where(function($query) use ($id){
+                $query->where('parent_id' , '<>' , $id)
+                ->orWhereNull('parent_id');
+            })
+            ->get();
         return view('admin.categories.edit' , [
             'category' => $category ,
             'categories' => $categories
         ]);
     }
-
 
     public function update(CategoryRequest $request, $id)
     {
