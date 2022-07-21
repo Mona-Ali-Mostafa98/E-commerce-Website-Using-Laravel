@@ -29,7 +29,7 @@ class CategoryRequest extends FormRequest
         return [
         'name' => ['required','max:255','min:3','unique:categories,name,'.$id],
         'description' => 'nullable|max:1000',
-        'parent_id' => ['nullable','exists:categories,id',new ParentRule($id)],
+        'parent_id' => ['nullable','exists:categories,id',new ParentRule($id)], //"parent:$id"
     ];
     }
 }
