@@ -1,4 +1,5 @@
 @extends('admin.layout')
+@section('page_title', 'Create New Product')
 @section('content')
     <main id="main" class="main">
         <div class="row pagetitle mb-2">
@@ -25,8 +26,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fs-4 mb-3">Create Product</h5>
-                            <form method="POST" action="{{ route('admin.products.store') }}"
-                                enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 @include('admin.products.form')
                             </form>

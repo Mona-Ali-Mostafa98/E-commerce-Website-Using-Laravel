@@ -1,4 +1,5 @@
 @extends('admin.layout')
+@section('page_title', 'Admin Dashboard')
 @section('content')
     <main id="main" class="main">
 

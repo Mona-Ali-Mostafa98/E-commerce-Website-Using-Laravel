@@ -1,9 +1,10 @@
 @extends('admin.layout')
+@section('page_title', "Show $product->name Product")
 @section('content')
     <main id="main" class="main">
         <div class="row pagetitle mb-2">
             <div class="col-sm-6 d-flex justify-content-start">
-                <h1 class="mb-2 fs-2">products
+                <h1 class="mb-2 fs-2">Products
                     <a href="{{ route('admin.products.index') }}" class="ms-3 btn btn-outline-primary mb-2 "><i
                             class="bi bi-caret-left-fill"></i> Back</a>
                 </h1>

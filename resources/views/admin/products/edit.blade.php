@@ -1,4 +1,5 @@
 @extends('admin.layout')
+@section('page_title', "Update $product->name Product")
 @section('content')
     <main id="main" class="main">
         <div class="row pagetitle mb-2">

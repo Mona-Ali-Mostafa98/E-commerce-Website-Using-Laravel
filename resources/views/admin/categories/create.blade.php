@@ -1,4 +1,5 @@
 @extends('admin.layout')
+@section('page_title', 'Create New Category')
 @section('content')
     <main id="main" class="main">
         <div class="row pagetitle mb-2">

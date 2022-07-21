@@ -1,4 +1,5 @@
 @extends('admin.layout')
+@section('page_title', "Update $category->name Category")
 @section('content')
     <main id="main" class="main">
         <div class="row pagetitle mb-2">
