@@ -17,4 +17,8 @@ class Product extends Model
         'image',
         'category_id'
     ];
+    //product belong to one category
+    public function category(){
+        return $this->belongsTo(Category::class, 'category_id', 'id')->withDefault();
+    }
 }

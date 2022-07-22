@@ -69,11 +69,7 @@
                                     <div class="col-lg-3 col-md-4 label text-primary fw-bold">Category Parent</div>
                                     <div class="col-lg-9 col-md-8">
                                         {{-- to show parent product name insteadof show his id so return array in show fun --}}
-                                        @foreach ($categories as $parent)
-                                            @if ($parent->id == $product->category_id)
-                                                {{ $parent->name }}
-                                            @endif
-                                        @endforeach
+                                        {{ $product->category->name }}
                                     </div>
                                 </div>
 

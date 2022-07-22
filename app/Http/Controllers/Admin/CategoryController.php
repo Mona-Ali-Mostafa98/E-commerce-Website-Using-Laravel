@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnValue;
@@ -13,8 +14,17 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        $request = request();
+        $filters = $request->query();
+
+        $categories = Category::with('parent')
+            ->when($request->query('name'), function($query, $name) {
+                $query->where('categories.name', 'LIKE', '%' . $name . '%');
+            })
+            ->simplePaginate();
         // $categories = Category::all();
-        $categories = Category::select('id', 'name' , 'parent_id' , 'created_at')->get();
+        // $categories = Category::select('id', 'name' , 'parent_id' , 'created_at')->get();
+        // $categories = Category::with('parent')->get();
         return view('admin.categories.index' , [
             'categories' => $categories
         ]);
@@ -43,10 +53,13 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::all();
+        // $categories = Category::all();
+        // $products = Product::where('category_id' , $id)->get();
+        $products=$category->products()->simplePaginate(5);       //use relation to get all products belong to this category
         return view('admin.categories.show' , [
             'category'=> $category ,
-            'categories' => $categories ,
+            // 'categories' => $categories ,
+            'products' => $products ,
         ]);
     }
 

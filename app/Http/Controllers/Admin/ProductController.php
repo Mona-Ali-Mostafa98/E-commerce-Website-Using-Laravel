@@ -14,9 +14,33 @@ class ProductController extends Controller
 
     public function index()
     {
+        // $products = Product::with('category')->simplePaginate();  //relation without filter
+
+        // logic to filter product according to category , price and product name
+        $request = request();
+        $filters = $request->query();
+
+        $products = Product::with('category')
+            ->when($request->query('name'), function($query, $name) {
+                $query->where('products.name', 'LIKE', '%' . $name . '%');
+            })
+            ->when($request->query('price_min'), function($query, $price) {
+                $query->where('price', '>=', $price);
+            })
+            ->when($request->query('price_max'), function($query, $price) {
+                $query->where('price', '<=', $price);
+            })
+            ->when($request->query('category_id'), function($query, $category_id) {
+                $query->where('category_id', '=', $category_id);
+            })
+            ->orderBy('created_at', 'desc')
+            ->simplePaginate();
+
         return view('admin.products.index', [
+            'categories' => Category::all() ,
+            'products'=>$products ,
             // 'products' => Product::all(),
-            'products' =>Product::select('id','image','name' ,'price','quantity','created_at')->orderBy('created_at', 'desc')->simplePaginate(10)
+            // 'products' =>Product::select('id','image','name' ,'price','quantity','created_at')->orderBy('created_at', 'desc')->simplePaginate(10)
         ]);
     }
 

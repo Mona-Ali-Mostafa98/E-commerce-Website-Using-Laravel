@@ -20,8 +20,23 @@
 
             </div>
         </div>
-
         <!-- End Page Title -->
+
+        {{-- start of section that searching on categories --}}
+        <div class="p-1 mb-3 ">
+            <form action="{{ route('admin.categories.index') }}" method="get" class="row">
+                <div class="col-xl-6 col-lg-6 col-sm-6 col-md-6">
+                    <input type="text" name="name" class="form-control mb-1"
+                        placeholder="Enter Category Name If You Want To Search It Here..... "
+                        value="{{ $filters['name'] ?? '' }}">
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-1">Find</button>
+                </div>
+            </form>
+        </div>
+        {{-- end of section that searching on categories --}}
 
         <section class="section">
             <div class="row">
@@ -50,7 +65,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $category->id }}</td>
                                             <td class="text-primary fw-bold">{{ $category->name }}</td>
-                                            <td>{{ $category->parent_id ?? 'No parent' }}</td>
+                                            <td>{{ $category->parent->name }}</td>
                                             <td>{{ $category->created_at }}</td>
                                             <td class="d-flex justify-content-start">
                                                 <a href="{{ route('admin.categories.show', $category->id) }}"

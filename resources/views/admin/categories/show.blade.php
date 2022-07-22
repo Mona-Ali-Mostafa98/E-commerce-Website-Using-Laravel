@@ -45,11 +45,7 @@
                                     <div class="col-lg-3 col-md-4 label text-primary fw-bold">Parent Category</div>
                                     <div class="col-lg-9 col-md-8">
                                         {{-- to show parent category name insteadof show his id so return array in show fun --}}
-                                        @foreach ($categories as $parent)
-                                            @if ($parent->id == $category->parent_id)
-                                                {{ $parent->name }}
-                                            @endif
-                                        @endforeach
+                                        {{ $category->parent->name }}
                                     </div>
                                 </div>
 
@@ -62,8 +58,61 @@
                                     <div class="col-lg-3 col-md-4 label text-primary fw-bold">Updated At</div>
                                     <div class="col-lg-9 col-md-8">{{ $category->updated_at }}</div>
                                 </div>
-                            </div>
 
+                                <div class="row mb-2">
+                                    <div class="col-lg-3 col-md-4 label text-primary fw-bold">Child Categories</div>
+                                    <ul class="col-lg-9 col-md-8 " style="display: inline-flex">
+                                        @foreach ($category->children as $child)
+                                            <li class="ms-4">
+                                                <a class="text-success fw-bold" data-bs-toggle="tooltip"
+                                                    data-bs-title="Show Category Details"
+                                                    href="{{ route('admin.categories.show', $child->id) }}">{{ $child->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    {{-- <div class="col-lg-9 col-md-8">{{ $category->children->name }}</div> --}}
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-lg-3 col-md-4 label text-primary fw-bold">
+                                        Products In This Category
+                                    </div>
+                                    <div class="col-lg-9 col-md-8">
+                                        <table class="table table-hover table-striped" style="width: 100%">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Product Name</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Created At</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($products as $product)
+                                                    <tr>
+                                                        <td>{{ $product->id }}</td>
+                                                        <td>
+                                                            <a class="text-success fw-bold"
+                                                                href="{{ route('admin.products.show', $product->id) }}"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-title="Show Product Details">
+                                                                {{ $product->name }}
+                                                            </a>
+                                                        </td>
+                                                        <td>{{ $product->price }}</td>
+                                                        <td>{{ $product->quantity }}</td>
+                                                        <td>{{ $product->created_at }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        <div class="mt-4 mb-3 d-flex justify-content-end pagination">
+                                            {{ $products->links() }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

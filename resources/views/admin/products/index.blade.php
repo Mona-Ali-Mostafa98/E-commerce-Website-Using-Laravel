@@ -20,9 +20,38 @@
 
             </div>
         </div>
-
         <!-- End Page Title -->
 
+        {{-- start of section that searching in products --}}
+        <div class="p-1 mb-3 col-xl-12 col-lg-12 col-sm-12 col-md-12">
+            <form action="{{ route('admin.products.index') }}" method="get" class="row">
+                <div class="col-auto">
+                    <input type="text" name="name" class="form-control mb-1" placeholder="Product Name.."
+                        value="{{ $filters['name'] ?? '' }}">
+                </div>
+                <div class="col-auto">
+                    <input type="number" name="price_min" class="form-control mb-1" placeholder="Price From.."
+                        value="{{ $filters['price_min'] ?? '' }}">
+                </div>
+                <div class="col-auto">
+                    <input type="number" name="price_max" class="form-control mb-1" placeholder="Price To.."
+                        value="{{ $filters['price_max'] ?? '' }}">
+                </div>
+                <div class="col-auto">
+                    <select name="category_id" class="form-select mb-1">
+                        <option value="">All Categories</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" @if ($category->id == ($filters['category_id'] ?? '')) selected @endif>
+                                {{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-1">Find</button>
+                </div>
+            </form>
+        </div>
+        {{-- end of section that searching in products --}}
         <section class="section">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-sm-12 col-md-12">
@@ -39,6 +68,7 @@
                                         {{-- <th scope="col">ID</th> --}}
                                         <th scope="col">Image</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Created At</th>
@@ -53,6 +83,7 @@
                                             <td><img src="{{ asset('images/' . $product->image) }}" alt=""
                                                     height="60" width="60"></td>
                                             <td class="text-primary fw-bold">{{ $product->name }}</td>
+                                            <td>{{ $product->category->name }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->quantity }}</td>
                                             <td>{{ $product->created_at->toDateString() }}</td>
