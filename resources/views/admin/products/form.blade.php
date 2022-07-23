@@ -50,7 +50,39 @@
         @enderror
     </div>
 </div>
-
+<div class="row mb-4">
+    <label for="views" class="col-sm-2 col-form-label">Views Number</label>
+    <div class="col-sm-10">
+        <input name="views" type="number" id="views" placeholder="Enter product views"
+            value="{{ old('views', $product->views) }}" class="form-control @error('views') is-invalid @enderror">
+        @error('views')
+            <p class="invalid-feedback">{{ $message }}</p>
+        @enderror
+    </div>
+</div>
+<div class="row mb-4">
+    <label for="sales" class="col-sm-2 col-form-label">Sales Number</label>
+    <div class="col-sm-10">
+        <input name="sales" type="number" id="sales" placeholder="Enter product sales"
+            value="{{ old('sales', $product->sales) }}" class="form-control @error('sales') is-invalid @enderror">
+        @error('sales')
+            <p class="invalid-feedback">{{ $message }}</p>
+        @enderror
+    </div>
+</div>
+<div class="row mb-4">
+    <label for="featured" class="col-sm-2 col-form-label">Featured</label>
+    <div class="col-sm-10">
+        <select name="featured" id="featured" class="form-select @error('featured') is-invalid @enderror">
+            <option value="">Select Featured of this product....</option>
+            <option value="0" @if ($product->featured == '0' or old('featured') == '0') selected @endif>False</option>
+            <option value="1" @if ($product->featured == '1' or old('featured') == '1') selected @endif>True</option>
+        </select>
+        @error('featured')
+            <p class="invalid-feedback">{{ $message }}</p>
+        @enderror
+    </div>
+</div>
 <div class="row mb-4">
     <label for="category_id" class="col-sm-2 col-form-label">Category </label>
     <div class="col-sm-10">

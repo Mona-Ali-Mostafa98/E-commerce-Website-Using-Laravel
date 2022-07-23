@@ -15,7 +15,10 @@ class Product extends Model
         'sale_price',
         'quantity',
         'image',
-        'category_id'
+        'category_id',
+        'featured',
+        'views',
+        'sales',
     ];
     //product belong to one category
     public function category(){

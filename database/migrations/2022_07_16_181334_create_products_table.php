@@ -28,6 +28,9 @@ return new class extends Migration
 
             // $table->unsignedBigInteger('user_id');
             // $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('featured')->default(0);
+            $table->unsignedBigInteger('views')->default(0)->nullable();
+            $table->unsignedBigInteger('sales')->default(0)->nullable();
 
             $table->timestamps();
 

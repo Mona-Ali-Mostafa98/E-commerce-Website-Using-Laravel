@@ -74,6 +74,28 @@
                                 </div>
 
                                 <div class="row mb-2">
+                                    <div class="col-lg-3 col-md-4 label text-primary fw-bold">Featured</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @if ($product->featured == '0')
+                                            False
+                                        @endif
+                                        @if ($product->featured == '1')
+                                            True
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-lg-3 col-md-4 label text-primary fw-bold">Views Number</div>
+                                    <div class="col-lg-9 col-md-8">{{ $product->views ?? 'No Views' }}</div>
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-lg-3 col-md-4 label text-primary fw-bold">Sales Number</div>
+                                    <div class="col-lg-9 col-md-8">{{ $product->sales ?? 'No Sales' }}</div>
+                                </div>
+
+                                <div class="row mb-2">
                                     <div class="col-lg-3 col-md-4 label text-primary fw-bold">Created At</div>
                                     <div class="col-lg-9 col-md-8">{{ $product->created_at }}</div>
                                 </div>
