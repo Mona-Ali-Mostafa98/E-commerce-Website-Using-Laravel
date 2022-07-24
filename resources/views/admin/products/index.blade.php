@@ -105,7 +105,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td class="text-center text-muted fs-4" colspan="7">There are no products
+                                            <td class="text-center text-muted fs-4" colspan="8">There are no products
                                                 ....
                                             </td>
                                         </tr>
