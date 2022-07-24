@@ -50,6 +50,14 @@
                     <span>Statistics</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.contact-us.index') }}">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contact Us</span>
+                </a>
+            </li>
+
         </ul>
 
     </aside><!-- End Sidebar-->
