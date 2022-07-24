@@ -30,6 +30,12 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.features.index') }}">
+                    <i class="bi bi-gear"></i>
+                    <span>Features</span>
+                </a>
+            </li>
         </ul>
 
     </aside><!-- End Sidebar-->
