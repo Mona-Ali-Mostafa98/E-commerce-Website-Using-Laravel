@@ -30,11 +30,16 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <l class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('admin.features.index') }}">
                     <i class="bi bi-gear"></i>
                     <span>Features</span>
                 </a>
+            </l <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('admin.social-links.index') }}">
+                <i class="bi bi-gear"></i>
+                <span>Social Links</span>
+            </a>
             </li>
         </ul>
 
