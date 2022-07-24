@@ -32,14 +32,23 @@
 
             <l class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('admin.features.index') }}">
-                    <i class="bi bi-gear"></i>
+                    <i class="bi bi-list-stars"></i>
                     <span>Features</span>
                 </a>
-            </l <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.social-links.index') }}">
-                <i class="bi bi-gear"></i>
-                <span>Social Links</span>
-            </a>
+            </l>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.social-links.index') }}">
+                    <i class="bi bi-link-45deg"></i>
+                    <span>Social Links</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('admin.statistics.index') }}">
+                    <i class="bi bi-info-circle"></i>
+                    <span>Statistics</span>
+                </a>
             </li>
         </ul>
 

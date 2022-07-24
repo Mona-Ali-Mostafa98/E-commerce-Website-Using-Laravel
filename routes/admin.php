@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +29,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('settings', SettingController::class)->only('index', 'show', 'update', 'edit');
     Route::resource('features', FeatureController::class);
     Route::resource('social-links', SocialLinkController::class)->except('create','store');
+    Route::resource('statistics', StatisticController::class);
 
 });
