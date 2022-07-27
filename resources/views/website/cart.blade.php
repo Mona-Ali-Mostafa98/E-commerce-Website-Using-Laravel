@@ -1,5 +1,7 @@
 @extends('website.layout')
 @section('content')
+    @include('admin.alerts')
+
     <!-- Begin Li's Breadcrumb Area -->
     <div class="breadcrumb-area">
         <div class="container">
@@ -17,12 +19,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#">
+                    <form action="{{ route('website.cart.update') }}" method="post">
+                        @csrf
+                        @method('patch')
                         <div class="table-content table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="li-product-remove">remove</th>
+                                        {{-- <th class="li-product-remove">remove</th> --}}
                                         <th class="li-product-thumbnail">images</th>
                                         <th class="cart-product-name">Product</th>
                                         <th class="li-product-price">Unit Price</th>
@@ -31,38 +35,47 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                        <td class="li-product-thumbnail"><a href="#"><img
-                                                    src="images/product/small-size/5.jpg" alt="Li's Product Image"></a></td>
-                                        <td class="li-product-name"><a href="#">Accusantium dolorem1</a></td>
-                                        <td class="li-product-price"><span class="amount">$46.80</span></td>
-                                        <td class="quantity">
-                                            <label>Quantity</label>
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="1" type="text">
-                                                <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal"><span class="amount">$70.00</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                        <td class="li-product-thumbnail"><a href="#"><img
-                                                    src="images/product/small-size/6.jpg" alt="Li's Product Image"></a></td>
-                                        <td class="li-product-name"><a href="#">Mug Today is a good day</a></td>
-                                        <td class="li-product-price"><span class="amount">$71.80</span></td>
-                                        <td class="quantity">
-                                            <label>Quantity</label>
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="1" type="text">
-                                                <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal"><span class="amount">$60.50</span></td>
-                                    </tr>
+                                    @forelse ($cart_items as $cart_item)
+                                        <tr>
+                                            {{-- <td class="li-product-remove">
+                                                <form action="{{ route('website.cart.destroy', $cart_item->product_id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit"><i class="fa fa-times"></i></button>
+                                                </form>
+                                            </td> --}}
+                                            <td class="li-product-thumbnail"><a href="#"><img
+                                                        src="{{ asset('images/' . $cart_item->product->image) }}"
+                                                        width="100px" height="100px" alt="Li's Product Image"></a>
+                                            </td>
+                                            <td class="li-product-name"><a
+                                                    href="#">{{ $cart_item->product->name }}</a>
+                                            </td>
+                                            <td class="li-product-price"><span
+                                                    class="amount">${{ $cart_item->product->final_price }}</span></td>
+                                            <td class="quantity">
+                                                <label>Quantity</label>
+                                                <div class="cart-plus-minus">
+                                                    {{-- name is an array because we may  update quantity of more product --}}
+                                                    <input class="cart-plus-minus-box"
+                                                        name="quantity[{{ $cart_item->product_id }}]"
+                                                        value="{{ $cart_item->quantity }}" type="text">
+                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal"><span
+                                                    class="amount">${{ $cart_item->product->final_price * $cart_item->quantity }}</span>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td class="text-center text-muted fs-4" colspan="5">
+                                                <h4>There are no products at cart....</h4>
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -75,27 +88,37 @@
                                         <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
                                     </div>
                                     <div class="coupon2">
-                                        <input class="button" name="update_cart" value="Update cart" type="submit">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5 ml-auto">
-                                <div class="cart-page-total">
-                                    <h2>Cart totals</h2>
-                                    <ul>
-                                        <li>Subtotal <span>$130.00</span></li>
-                                        <li>Total <span>$130.00</span></li>
-                                    </ul>
-                                    <a href="#">Proceed to checkout</a>
-                                </div>
-                            </div>
-                        </div>
+                                        <button type="submit"
+                                            onclick="return confirm('Are you sure you want to update your cart?')">Update
+                                            cart</button>
+                    </form>
+
+                    <form action="{{ route('website.cart.destroy') }}" method="post" class="d-inline">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" onclick="return confirm('Are you sure you want to clear your cart?')">Clear
+                            cart</button>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 ml-auto">
+            <div class="cart-page-total">
+                <h2>Cart totals</h2>
+                <ul>
+                    <li>Subtotal <span>${{ $sub_total }}</span></li>
+                    <li>Tax <span>${{ $tax }}</span></li>
+                    <li>Total <span>${{ $total }}</span></li>
+                </ul>
+                <a href="#">Proceed to checkout</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     <!--Shopping Cart Area End-->
 @endsection

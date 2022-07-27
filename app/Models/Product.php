@@ -24,4 +24,13 @@ class Product extends Model
     public function category(){
         return $this->belongsTo(Category::class, 'category_id', 'id')->withDefault();
     }
+
+    // add accessor to model product to check if sale_price is exist and return final price
+    public function getFinalPriceAttribute()
+    {
+        if ($this->sale_price > 0) {
+            return $this->sale_price;
+        }
+        return $this->price;
+    }
 }

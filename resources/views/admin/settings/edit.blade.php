@@ -102,7 +102,18 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <div class="row mb-4">
+                                    <label for="tax_ratio" class="col-sm-2 col-form-label">Tax</label>
+                                    <div class="col-sm-10">
+                                        <input name="tax_ratio" type="text" id="tax_ratio"
+                                            placeholder="Enter setting tax ratio"
+                                            value="{{ old('tax_ratio', $setting->tax_ratio) }}"
+                                            class="form-control @error('tax_ratio') is-invalid @enderror">
+                                        @error('tax_ratio')
+                                            <p class="invalid-feedback">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="row mb-4">
                                     <label class="col-sm-2 col-form-label">Image</label>
                                     <div class="col-sm-10">

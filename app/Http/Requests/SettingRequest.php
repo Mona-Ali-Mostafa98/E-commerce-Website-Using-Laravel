@@ -31,6 +31,7 @@ class SettingRequest extends FormRequest
             'address'=>'required|string',
             'phone' => 'required|string',
             'email' => ['required', 'email'],
+            'tax_ratio' => ['nullable', 'numeric'],
         ];
     }
 }

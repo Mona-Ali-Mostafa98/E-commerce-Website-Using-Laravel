@@ -73,6 +73,11 @@
                                 </div>
 
                                 <div class="row mb-2">
+                                    <div class="col-lg-3 col-md-4 label text-primary fw-bold">Setting Tax Ratio</div>
+                                    <div class="col-lg-9 col-md-8">{{ $setting->tax_ratio }}</div>
+                                </div>
+
+                                <div class="row mb-2">
                                     <div class="col-lg-3 col-md-4 label text-primary fw-bold">Created At</div>
                                     <div class="col-lg-9 col-md-8">{{ $setting->created_at }}</div>
                                 </div>

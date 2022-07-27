@@ -4037,7 +4037,9 @@ thead {
 	height: 42px;
 	width: 120px;
 }
-.coupon-all input.button {
+.coupon-all input.button,
+.coupon-all button{
+    border: none;
 	background-color: #333;
 	border: 0 none;
 	border-radius: 2px;
@@ -4055,7 +4057,8 @@ thead {
 	transition: all 0.3s ease-in-out 0s;
 	width: inherit;
 }
-.coupon-all input.button:hover {
+.coupon-all input.button:hover,
+.coupon-all button:hover {
 	background: #fed700;
 }
 .coupon2 {

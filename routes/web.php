@@ -21,9 +21,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class , 'index'])->name('website.index');
 Route::get('/website/shop', [ShopController::class , 'index'])->name('website.shop');
 Route::get('/website/about-us',[AboutUsController::class , 'index'])->name('website.about-us');
-Route::get('/website/cart',[CartController::class , 'index'])->name('website.cart');
+
 Route::get('/website/checkout',[CheckoutController::class , 'index'])->name('website.checkout');
 Route::get('/website/contact-us', [ContactUsController::class , 'index'])->name('website.contact-us');
 Route::post('/website/contact-us/store', [ContactUsController::class , 'store'])->name('website.contact-us.store');
 Route::get('/website/single-product', function () { return view('website.wishlist');})->name('website.wishlist');
 Route::get('/website/wishlist',[WishlistController::class , 'index'])->name('website.wishlist');
+
+Route::prefix('website/cart')->name('website.')->group(function () {
+    Route::get('/',[CartController::class , 'index'])->name('cart');
+    Route::post('store',[CartController::class , 'store'])->name('cart.store');
+    Route::patch('update',[CartController::class , 'update'])->name('cart.update');       //patch use in case of update more than one 
+    Route::delete('destroy',[CartController::class , 'destroy'])->name('cart.destroy');   //don't take id, remove all cart
+});

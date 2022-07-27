@@ -155,28 +155,34 @@
                                     <li class="hm-minicart">
                                         <div class="hm-minicart-trigger">
                                             <span class="item-icon"></span>
-                                            <span class="item-text">£80.00
-                                                <span class="cart-item-count">2</span>
+                                            <span class="item-text">${{ $total }}
+                                                <span class="cart-item-count">{{ $cart_items_count }}</span>
                                             </span>
                                         </div>
                                         <span></span>
                                         <div class="minicart">
                                             <ul class="minicart-product-list">
-                                                <li>
-                                                    <a href="single-product.html" class="minicart-product-image">
-                                                        <img src="images/product/small-size/5.jpg"
-                                                            alt="cart products">
-                                                    </a>
-                                                    <div class="minicart-product-details">
-                                                        <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                        <span>£40 x 1</span>
-                                                    </div>
-                                                    <button class="close" title="Remove">
-                                                        <i class="fa fa-close"></i>
-                                                    </button>
-                                                </li>
+                                                @foreach ($cart_items as $cart_item)
+                                                    <li>
+                                                        <a href="single-product.html" class="minicart-product-image">
+                                                            <img src="{{ asset('images/' . $cart_item->product->image) }}"
+                                                                alt="cart products">
+                                                        </a>
+                                                        <div class="minicart-product-details">
+                                                            <h6><a
+                                                                    href="single-product.html">{{ $cart_item->product->name }}</a>
+                                                            </h6>
+                                                            <span>${{ $cart_item->product->final_price }}x
+                                                                {{ $cart_item->quantity }}</span>
+                                                        </div>
+                                                        <button class="close" title="Remove">
+                                                            <i class="fa fa-close"></i>
+                                                        </button>
+                                                    </li>
+                                                @endforeach
                                             </ul>
-                                            <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                            <p class="minicart-total">SUBTOTAL: <span>${{ $sub_total }}</span></p>
+                                            {{-- <p class="minicart-total">Tax: <span>${{ $tax }}</span></p> --}}
                                             <div class="minicart-button">
                                                 <a href="{{ route('website.cart') }}"
                                                     class="li-button li-button-fullwidth li-button-dark">
