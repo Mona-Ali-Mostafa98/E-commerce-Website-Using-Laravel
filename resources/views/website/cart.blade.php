@@ -112,7 +112,12 @@
                     <li>Tax <span>${{ $tax }}</span></li>
                     <li>Total <span>${{ $total }}</span></li>
                 </ul>
-                <a href="#">Proceed to checkout</a>
+                <form action="{{ route('website.checkout') }}" method="post">
+                    @csrf
+                    <div class="coupon-all ">
+                        <button type="submit">Proceed to checkout</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -33,4 +33,15 @@ class Product extends Model
         }
         return $this->price;
     }
+
+    // this relation to get data of orders stored in order_product table
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_products')
+            ->using(OrderProduct::class)
+            ->withPivot([
+                'price', 'quantity'
+            ]);
+    }
+    
 }

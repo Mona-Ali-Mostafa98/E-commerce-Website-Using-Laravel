@@ -73,7 +73,7 @@
                                         <div class="setting ht-setting">
                                             <ul class="ht-setting-list">
                                                 <li><a href="login-register.html">My Account</a></li>
-                                                <li><a href="{{ route('website.checkout') }}">Checkout</a></li>
+                                                <li><a href="{{ route('website.checkout.index') }}">Checkout</a></li>
                                                 <li><a href="{{ route('website.login-register') }}">Sign In</a></li>
                                                 <li><a href="{{ route('website.logout') }}">Sign Out</a></li>
                                             </ul>

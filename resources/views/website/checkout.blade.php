@@ -246,37 +246,41 @@
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="your-order">
-                        <h3>Your order</h3>
+                        <h3>Your Orders</h3>
                         <div class="your-order-table table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="cart-product-name">Product</th>
-                                        <th class="cart-product-total">Total</th>
+                                        <th class="cart-product-name">Order Id</th>
+                                        <th class="cart-product-total">Total Price</th>
+                                        <th class="cart-product-name">Order Status</th>
+                                        <th class="cart-product-total">Created At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="cart_item">
-                                        <td class="cart-product-name"> Vestibulum suscipit<strong
-                                                class="product-quantity"> × 1</strong></td>
-                                        <td class="cart-product-total"><span class="amount">£165.00</span></td>
-                                    </tr>
-                                    <tr class="cart_item">
-                                        <td class="cart-product-name"> Vestibulum suscipit<strong
-                                                class="product-quantity"> × 1</strong></td>
-                                        <td class="cart-product-total"><span class="amount">£165.00</span></td>
-                                    </tr>
+                                    @foreach ($orders as $order)
+                                        <tr class="cart_item">
+                                            <td><strong>
+                                                    <a href="{{ route('orders.show', [$order->id]) }}">
+                                                        {{ $order->id }}</a> </strong>
+                                            </td>
+                                            <td>{{ $order->total }}</td>
+                                            <td>{{ $order->status }}</td>
+                                            <td>{{ $order->created_at }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
-                                <tfoot>
+                                {{-- <tfoot>
                                     <tr class="cart-subtotal">
                                         <th>Cart Subtotal</th>
-                                        <td><span class="amount">£215.00</span></td>
+                                        <td><span class="amount">$</span>
+                                        </td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>Order Total</th>
                                         <td><strong><span class="amount">£215.00</span></strong></td>
                                     </tr>
-                                </tfoot>
+                                </tfoot> --}}
                             </table>
                         </div>
                         <div class="payment-method">
